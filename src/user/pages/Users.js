@@ -9,7 +9,7 @@ const Users = () => {
       name: 'Istvan Acs',
       image:
         'https://images.pexels.com/photos/34600/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=750&w=1260',
-      places: 3
+      places: 4
     }
   ];
   return <UsersList items={USERS} />;
