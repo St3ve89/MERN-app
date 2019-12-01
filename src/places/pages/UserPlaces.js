@@ -34,7 +34,6 @@ const DUMMY_PLACES = [
 
 const UserPlaces = () => {
   const userId = useParams().uid;
-  console.log('userId', userId);
   const loadedPlaces = DUMMY_PLACES.filter(place => place.creator === userId);
   return <PlaceList items={loadedPlaces} />;
 };
