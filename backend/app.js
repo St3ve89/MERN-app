@@ -1,9 +1,14 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const placesRouters = require('./routes/places-routes');
 const usersRouters = require('./routes/users-routes');
 const HttpError = require('./models/http-error');
+
+// Load env variables
+dotenv.config({ path: './config/config.env' });
 
 const app = express();
 
@@ -26,6 +31,11 @@ app.use((error, req, res, next) => {
   res.json({ success: error.message || 'An unknown error occured!' });
 });
 
-app.listen(5000, () => {
-  console.log('App listening on port 5000!');
-});
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    app.listen(5000, () => {
+      console.log('App listening on port 5000!');
+    });
+  })
+  .catch(err => console.log(err));
